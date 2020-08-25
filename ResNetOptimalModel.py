@@ -117,7 +117,7 @@ scaler_x.fit(x)
 xscale = scaler_x.transform(x)
 scaler_y.fit(y)
 yscale = scaler_y.transform(y)
-X_train, X_test, y_train, y_test = train_test_split(xscale, yscale,test_size=0.25)
+X_train, X_test, y_train, y_test = train_test_split(xscale, yscale,test_size=0.25) # testing data percentage is 0.25
 
 ##############################Build Model################################
 model = ResNet50Regression()
@@ -129,7 +129,7 @@ model.summary()
 starttime = datetime.datetime.now()
 
 history = model.fit(X_train, y_train, epochs=50, batch_size=5000, verbose=2, callbacks=[callbacks.EarlyStopping(monitor='val_loss', patience=10,verbose=2, mode='auto')], validation_split=0.1)
-#history = model.fit(X_train, y_train, epochs=10, batch_size=60000,  verbose=1, validation_split=0.1)
+#history = model.fit(X_train, y_train, epochs=10, batch_size=60000,  verbose=1, validation_split=0.1) # The epoch and patience of early warning for ANN are 50 and 10, respectively.
 endtime = datetime.datetime.now()
 
 ##############################Save Model#################################
